@@ -1,0 +1,16 @@
+.founders {
+    padding-top: 7rem;
+    padding-bottom: 7rem;
+}
+.founders .founder-item {
+    max-width: 18rem;
+}
+.founders .founder-item img {
+    max-width: 12rem;
+    box-shadow: 0px 5px 5px 0px #adb5bd;
+}
+.img-fluid {
+    max-width: 100%;
+    height: auto;
+    box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}

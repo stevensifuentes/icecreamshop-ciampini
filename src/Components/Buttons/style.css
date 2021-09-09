@@ -1,0 +1,20 @@
+.button-main{
+ text-align: center;
+}
+.button-design{
+    background: rgba(55, 98, 133, 0);
+    width: 70%;
+    padding: 5px 50px; 
+    font-size: 1.5em;
+    border: 1px solid #090d46;
+    color:#090d46;
+    border-radius: 30px;
+    cursor: pointer;
+    outline: none;
+    font-weight: bold;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.button-design:hover{
+    background: #090d461a;
+}

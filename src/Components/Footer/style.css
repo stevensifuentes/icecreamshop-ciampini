@@ -1,0 +1,36 @@
+.footer {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+    /* background-color: #2c3e50; */
+    background-color: #3d4357;
+    color: #fff;
+}
+.copyright {
+    background-color: #1a252f;
+}
+.lead {
+    font-size: 1.25rem;
+    font-weight: 300;
+}
+.btn-social {
+    border-radius: 100%;
+    display: inline-flex;
+    width: 3.25rem;
+    height: 3.25rem;
+    font-size: 1.25rem;
+    justify-content: center;
+    align-items: center;
+}
+.mx-1 {
+    margin-right: 0.25rem !important;
+    margin-left: 0.25rem !important;
+}
+.btn-outline-light {
+    color: #f8f9fa;
+    border-color: #f8f9fa;
+}
+.btn-outline-light:hover {
+    color: #000;
+    background-color: #f8f9fa;
+    border-color: #f8f9fa;
+}

@@ -1,0 +1,450 @@
+body{
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+    background: linear-gradient(to right,rgba(65, 61, 61, 0.753),rgba(66, 55, 55, 0.753)), url("https://i.pinimg.com/736x/5f/64/9c/5f649c728fc328958997f3feecbf3a7c.jpg");
+    /* background-image: url("https://cdn2.vectorstock.com/i/1000x1000/45/26/cute-dogs-background-blank-space-vector-32274526.jpg"); */
+}
+
+header{
+    width: 100%;
+    height: 60px;
+    background-color: black;
+}
+.container_grafico{
+    display: flex;
+}
+.grafico{
+    height: 500px;
+    width: 500px;
+    border-radius: 50%;
+    margin: 50px;
+    border:10px whitesmoke groove;
+}
+.container_leyenda{
+    display: inline;
+    width: 200px;
+    height: 300px;
+    background-color: gray;
+    border-radius: 10px;
+    margin: 50px;
+    opacity: 80%;
+}
+.container_leyenda div{
+    display: block;
+    padding: 10px;
+    border-radius: 5px;
+    opacity: 80%;
+    margin: 10px;
+    
+}
+.color_bulldog{
+    background-color: yellow;
+}
+.color_pitbull{
+    background-color: green;
+}
+.color_shichu{
+    background-color: blue;
+    
+}
+.color_pequines{
+    background-color: purple;
+    
+}
+.color_san{
+    background-color: red;
+}
+.color_chihuahua{
+    background-color: orange;
+    
+}
+
+.logout{
+    display: flex;
+    justify-content: flex-end;
+}
+main{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    height: 80vh;
+}
+
+main .controles{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+main .controles .texto{
+    color: rgb(82, 167, 216);
+    font-family: 'Pacifico', cursive;
+    font-size: 3.2em;
+    text-align: center;
+    text-shadow: 2px 2px 5px rgba(65, 61, 61, 0.753), 4px 4px 10px rgba(214, 208, 208, 0.753);
+}
+
+main .controles .btns{
+    /* margin: 50px; */
+    text-align: center;
+}
+
+input {
+	width: calc(100% - 20px);
+	padding: 9px;
+	margin: auto;
+	margin-top: 12px;
+	font-size: 16px
+}
+
+.date-content p{
+    font-size: 10px;
+}
+
+.btns1{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.btns1 a{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 90px;
+    width: 40%;
+    /* margin: 20px; */
+    padding: 20px 50px; 
+    font-size: 2.3em;
+    border: 2px solid rgb(255, 255, 255);
+    border-radius: 25px;
+    cursor: pointer;
+    background-color: rgba(52, 66, 4, 0);
+    font-family: 'Roboto', sans-serif;
+    text-decoration: none;
+    color: wheat;
+}
+
+.btns a{
+    height: 90px;
+    width: 40%;
+    margin: 20px;
+    padding: 20px 50px; 
+    font-size: 2.3em;
+    border: 2px solid rgb(255, 255, 255);
+    border-radius: 25px;
+    cursor: pointer;
+    background-color: rgba(52, 66, 4, 0);
+    font-family: 'Roboto', sans-serif;
+    text-decoration: none;
+    color: wheat;
+}
+
+.btns a:hover{
+    background-color: rgba(58, 73, 85, 0.356);
+}
+
+main .imagenes{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+main .imagenes img{
+    width: 60em;
+}
+
+main .imagenes img[src="./img/dogSignal.png"]{
+    width: 30em;
+}
+
+main .imagenes img[src="./img/dogLogin.png"]{
+    width: 40em;
+}
+
+.hero-image{
+    height: 60vh;
+    background-image: linear-gradient(to right,rgba(82, 58, 58, 0.685),rgba(0,0,0,0.5)), url("./img/dog.jpg");     /*linear-gradient(to right,rgba(82, 58, 58, 0.5),rgba(0,0,0,0.5)),  */
+    background-size: cover;
+    background-position: center;
+    padding: 2em;
+    display: flex;
+    align-items: center;
+    border-bottom-right-radius: 60%;
+}
+
+.hero-image h1{
+    font-family: 'Russo One', sans-serif;
+    color: rgba(157, 173, 179, 0.6);
+    font-size: 3.4em;
+    text-shadow: 8px 0px 10px rgb(0, 0, 0), 10px 5px 20px rgb(0, 0, 0);
+}
+
+.card-section{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card{
+    background-color: rgba(73, 2, 8, 0.493);
+    box-shadow: 4px 4px 10px 5px rgba(0, 0, 0, 0.2), 6px 6px 25px 5px rgba(0, 0, 0, 0.19);
+    padding: 2em;
+    width: 50%;
+    font-size: 1.8em;
+    text-align: center;
+    border-radius: 30px;
+    color: rgb(209, 199, 200);
+    box-sizing: border-box;
+}
+
+.card2{
+    background-color: rgba(73, 2, 8, 0.493);
+    box-shadow: 4px 4px 10px 5px rgba(0, 0, 0, 0.2), 6px 6px 25px 5px rgba(0, 0, 0, 0.19);
+    padding: 1em;
+    width: 50%;
+    font-size: 1.6em;
+    text-align: center;
+    border-radius: 30px;
+    color: rgb(209, 199, 200);
+    box-sizing: border-box;
+    /* margin-top: 50px; */
+}
+
+.card2 h4{
+    color: rgba(65, 116, 136, 0.952);
+
+}
+
+.imagenes h1{
+    margin: 0;
+    padding: 20px 0;
+}
+
+.form-campos input{
+    border: none;
+    outline: none;
+    height: 30px;
+    border-radius: 10px;
+    background-color: rgba(63, 28, 31, 0.493);
+    color: #fff;
+    font-family: century gothic;
+}
+
+.form-campos input:hover{
+    background-color: rgba(63, 28, 31, 0.849);
+}
+
+.button-design{
+    /* background: rgb(55, 98, 133); */
+    background-color: rgba(68, 136, 238, 0.363);
+    width: calc(80% - 20px);
+    /* padding: 15px;   */
+    font-size: 1em;
+    border-radius: 30px;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    color: #fff;
+}
+
+.button-design:hover{
+    background-color: rgba(68, 136, 238, 0.808);
+}
+
+.btnLogin a{
+    text-decoration: none;
+    color: white;
+    font-size: 1em;
+}
+
+.btnLogin a:hover{
+    text-decoration: underline;
+}
+
+.form{
+    padding: 0 1%;
+    padding-top: 120px; 
+    text-align: center;
+}
+
+/* .inputs{
+    display: flex;
+    justify-content: center;
+} */
+
+.botones{
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.avatar {
+    position: relative;
+    margin-top: 20px;
+}
+
+a[type="button"]{
+    margin-top: 100px;
+    text-decoration: none;
+    /* width: calc(80% - 20px); */
+}
+
+.avatar-selector {
+    background-color: #009688;
+    color: white;
+    border-radius: 50%;
+    padding: 12px;
+    font-size: 0.8em;
+    cursor: pointer;
+    position: relative;
+    /* right: 2.5em; */
+    bottom: 0em;
+    height: 10px;
+}
+
+/* input[type="text"]{
+    outline: none;
+    border-radius: 30px;
+    padding: 5px;
+} */
+
+.avatar input[type="file"] {
+    display: none;
+}
+
+select{
+    display: inline-block;
+	width: 35%;
+	cursor: pointer;
+  	padding: 8px; 
+  	height: 40px;
+  	outline: 0; 
+  	border: 0;
+	border-radius: 0;
+	background: #f0f0f0;
+	color: #7b7b7b;
+	font-size: .7em;
+	color: #999;
+	font-family: 'Quicksand', sans-serif;
+	border: 2px solid rgba(0,0,0,0.2);
+    border-radius: 12px;
+    position: relative;
+    transition: all 0.25s ease;
+    /* margin-top: 10px; */
+}
+
+.seleccion-raza{
+    margin-top: 10px;
+}
+
+footer{
+    margin-top: 100px;
+    height: 50px;
+    width: 100%;
+    background-color: black;
+    color: white;
+    text-align: center;
+}
+
+footer{
+    width: 100%;
+    height: 60px;
+    background-color: black;
+    position: absolute;
+    bottom: 0;
+}
+
+.alerta, .ok, .error {
+	text-align: center;
+	width: 100%;
+    margin: 5px 0;
+	padding: 12px;
+	color: #fff;
+    box-sizing: border-box;
+}
+
+.ok h3{
+    height: inherit;
+    padding: 20px;
+    width: 50%;
+    background-color: rgb(57, 121, 195);
+    margin: 0 auto;
+    border-radius: 15px;
+}
+
+.alerta h3, .error h3{
+    height: inherit;
+    padding: 20px;
+    width: 50%;
+    background-color: #a22;
+    margin: 0 auto;
+    border-radius: 15px;
+}
+#tablaUsuarios{
+    display: inline-block;
+}
+#tablaUsuarios tbody tr{
+    background-color: white;
+}
+#tablaUsuarios thead th{
+    background-color: gray;
+}
+#macho{
+    background-color: lightblue;
+}
+#hembra{
+    background-color: pink;
+}
+#genero div{
+    display: inline-block;
+    height: 50px;
+    font-size: 30px;
+    color: white;
+    text-shadow: 8px 0px 10px rgb(0, 0, 0), 10px 5px 20px rgb(0, 0, 0);
+}
+#genero{
+    margin: 20px;
+    padding: 20px;
+    background-color: white;
+    border-radius: 20px;
+}
+#genero_leyenda div{
+    display: block;
+    padding: 10px;
+    border-radius: 5px;
+    opacity: 80%;
+    margin: 10px;
+}
+#grafico_genero{
+    width: 500px;
+    margin: 50px;
+}
+#cachorro{
+    background-color: rgb(255, 195, 0);
+}
+#joven{
+    background-color: rgb(255, 87, 51);
+}
+#adulto{
+    background-color: rgb(199, 0, 57);
+}
+#edades div{
+    display: iblock;
+    height: 50px;
+}
+#edades{
+    margin: 10px;
+    padding: 20px;
+    border-bottom: 2px black solid;
+    border-left: 2px black solid;
+}
+#grafico_edades{
+    padding: 30px;
+    width: 750px;
+}
+#grafico_edades p{
+    font-size: 30px;
+    color: white;
+    text-shadow: 8px 0px 10px rgb(0, 0, 0), 10px 5px 20px rgb(0, 0, 0);
+}
