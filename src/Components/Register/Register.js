@@ -3,7 +3,7 @@ import './style.css';
 import portLogin from './portLogin.png';
 import Signup from './Signup';
 
-const Register = (props) => {
+const Register = () => {
     return (
         <main className="principal">
             <section className="container-left mostrar-ocultar">

@@ -1,9 +1,11 @@
 import React, { useState, useEffect, useContext } from 'react'
-import { auth, db } from '../Config/Config'
-import { CartContext } from '../Global/CartContext'
-import Navbar from './Navbar';
+import { addDoc, collection, doc, onSnapshot } from 'firebase/firestore';
+import { onAuthStateChanged } from 'firebase/auth';
 import { useHistory } from 'react-router-dom'
 import { toast } from "react-toastify";
+import { auth, db } from '../firebase/firebaseConfig'
+import { CartContext } from '../Global/CartContext'
+import Navbar from './Navbar';
 
 export const Cashout = (props) => {
 
@@ -19,14 +21,14 @@ export const Cashout = (props) => {
     const [successMsg, setSuccessMsg] = useState('');
 
     useEffect(() => {
-        auth.onAuthStateChanged(user => {
+        onAuthStateChanged(auth, (user) => {
             if (user) {
-                db.collection('Clients').doc(user.uid).onSnapshot(snapshot => {
+                onSnapshot(doc(db, "Clients", user.uid), (snapshot) => {
                     setName(snapshot.data().Name);
                     setEmail(snapshot.data().Email);
                     setCell(snapshot.data().Phone);
                     setAddress(snapshot.data().Address);
-                })
+                });
             }
             else {
                 history.push('/login')
@@ -36,11 +38,12 @@ export const Cashout = (props) => {
 
     const cashoutSubmit = (e) => {
         e.preventDefault();
-        auth.onAuthStateChanged(user => {
+        onAuthStateChanged(auth, async (user) => {
             if (user) {
                 const today = new Date();
-                let date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();;
-                db.collection('Buyer-info').doc().set({
+                const date = `${today.getFullYear()} - ${today.getMonth() + 1} - ${today.getDate()}`;
+
+                const docRef = await addDoc(collection(db, "Buyer-info"), {
                     BuyerName: name,
                     BuyerEmail: email,
                     BuyerCell: cell,
@@ -49,19 +52,19 @@ export const Cashout = (props) => {
                     BuyerQuantity: totalQty,
                     TimeBuy: date,
                     State: true
-                }).then(() => {
-                    setName('');
-                    setEmail('');
-                    setCell('');
-                    setAddress('');
-                    dispatch({ type: 'EMPTY' })
-                    toast("¡Tu pedido se ha realizado de manera correcta! Gracias por la compra", {
-                        type: "info",
-                      });
-                    setTimeout(() => {
-                        history.push('/products')
-                    }, 3000)
-                }).catch(err => setError(err.message))
+                })
+
+                console.log("Document written with ID: ", docRef.id)
+
+                setName('');
+                setEmail('');
+                setCell('');
+                setAddress('');
+                dispatch({ type: 'EMPTY' })
+                toast("¡Tu pedido se ha realizado de manera correcta! Gracias por la compra", { type: "info" });
+                setTimeout(() => {
+                    history.push('/products')
+                }, 3000)
             }
         })
     }

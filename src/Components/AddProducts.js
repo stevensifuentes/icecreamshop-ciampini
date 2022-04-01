@@ -1,8 +1,7 @@
 import React, { useState } from 'react'
-import { storage, db } from '../Config/Config'
+import { storage, db } from '../firebase/firebaseConfig'
 
 export const AddProducts = () => {
-
     const [productName, setProductName] = useState('');
     const [productPrice, setProductPrice] = useState(0);
     const [productImg, setProductImg] = useState(null);
@@ -26,8 +25,6 @@ export const AddProducts = () => {
     // add product
     const addProduct = (e) => {
         e.preventDefault();
-        // console.log(productImg.name);
-        // console.log(productImg);
         const uploadTask = storage.ref(`imgProducts/${productImg.name}`).put(productImg);
         uploadTask.on('state_changed', snapshot => {
             const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;

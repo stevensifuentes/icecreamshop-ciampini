@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import ADMIN from './Admin.jpg'
-import { db } from '../../Config/Config'
+import { db } from '../../firebase/firebaseConfig'
+import { collection, onSnapshot } from "firebase/firestore";
 
 import {
     Button,
@@ -13,30 +14,25 @@ import {
 
 let info = {
     nombre: '',
-    apellido: 0,
+    apellido: '',
     telefono: 0, 
     direccion: true,
     correo: ''
 };
 
 const UserProfile = () => {
-    
     const obtenerRegistros = async () => {
-        db.collection('Clients').onSnapshot((querySnapshot) => {
-            querySnapshot.forEach((doc) => {
-                let correo = doc.data().Email
-                let correito = correo.split("@");     
-                if(correito[1] === "admin.com"){
-                    info = {
-                        nombre: doc.data().Name,
-                        apellido: doc.data().LastName,
-                        telefono: doc.data().Phone, 
-                        direccion: doc.data().Address,
-                        correo: doc.data().Email
-                    };
-                }
-            });
-        });
+        onSnapshot(collection(db, 'Clients'), (snapshot) => {
+            // console.log(snapshot.docs[1].data())
+            const admin = snapshot.docs.filter(doc => (doc.data().Email).split('@')[1]==='admin.com')
+            info = {
+                nombre: admin.data().Name,
+                apellido: admin.data().LastName,
+                telefono: admin.data().Phone, 
+                direccion: admin.data().Address,
+                correo: admin.data().Email
+            };
+          }, (error) => console.log(error))
     }
 
     useEffect(() => {

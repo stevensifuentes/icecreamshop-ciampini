@@ -1,29 +1,35 @@
 import React, { useState } from 'react'
-import { auth } from '../../Config/Config';
-import { Link } from 'react-router-dom'
-import portLogin from './portLogin.png';
-import './style.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLock, faEnvelope } from '@fortawesome/free-solid-svg-icons';
+import { auth } from '../../firebase/firebaseConfig';
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { Link } from 'react-router-dom'
+
+import portLogin from './portLogin.png';
+import './style.css';
 
 const Login = (props) => {
-
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
 
     const login = (e) => {
         e.preventDefault();
-        auth.signInWithEmailAndPassword(email, password).then(() => {
-            if (email === "pedro@admin.com" && password === "administrador") {
-                props.history.push('/UserProfile');
-            } else {
-                props.history.push('/products');
-            }
-            setEmail('');
-            setPassword('');
-            setError('');
-        }).catch(err => setError(err.message));
+
+        signInWithEmailAndPassword(auth, email, password)
+            .then((userCredential) => {
+                // Signed in
+                const user = userCredential.user;
+                console.log(`From Login: ${user}`)
+                (email==='pedro@admin.com' && password==='administrador') ?
+                props.history.push('/UserProfile')
+                    :
+                props.history.push('/products')
+            })
+            .catch((error) => {
+                console.log(`ErrorCode: ${error.code}`);
+                console.log(`errorMessage: ${error.message}`);
+            });
     }
 
     return (
@@ -40,7 +46,7 @@ const Login = (props) => {
                             <label
                                 htmlFor="in-email"
                                 className="form-label espacio">
-                                Email
+                                Correo
                             </label>
                             <input
                                 type="email"

@@ -1,7 +1,8 @@
 import React, { useContext } from 'react'
 import logo from './Logo.png'
 import { Link } from 'react-router-dom'
-import { auth } from '../Config/Config'
+import { auth } from '../firebase/firebaseConfig'
+import { signOut } from "firebase/auth";
 import { Icon } from 'react-icons-kit'
 import { cart } from 'react-icons-kit/entypo/cart'
 import { useHistory } from 'react-router-dom'
@@ -13,19 +14,22 @@ const Navbar = ({ user }) => {
     const { totalQty } = useContext(CartContext);
 
     const handleLogout = () => {
-        auth.signOut().then(() => {
+        signOut(auth).then(() => {
             history.push('/login');
+        }).catch((error) => {
+            console.log(error)
         })
     }
+
     console.log(user);
+
     return (
         <>
-
-            {!user && <div className='rightside'>
+            {
+            !user && <div className='rightside'>
                 <span><Link to="signup" className='navlink'>SIGN UP</Link></span>
                 <span><Link to="login" className='navlink'>LOGIN</Link></span>
             </div>
-
             }
 
             {user === "Pedro" ?

@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { db } from '../../../Config/Config'
-import "bootstrap/dist/css/bootstrap.min.css";
+import { db } from '../../../firebase/firebaseConfig';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
+import "bootstrap/dist/css/bootstrap.min.css";
 import { toast } from "react-toastify";
 import './TableStyle.css'
 
@@ -12,21 +12,18 @@ import {
     Container,
 } from "reactstrap";
 
+import { collection, onSnapshot } from "firebase/firestore";
+
 const TableOrders = () => {
 
     const [datos, setDatos] = useState([]);
-    // const [dataPedidos, setDataPedidos] = useState(initialStateValues);
 
     const obtenerRegistros = async () => {
-        db.collection('Buyer-info').onSnapshot((querySnapshot) => {
-            const docs = [];
-            querySnapshot.forEach((doc) => {
-                if(doc.data().State){
-                    docs.push({...doc.data(), id: doc.id});
-                }
-            });
-            setDatos(docs);
-        });
+        onSnapshot(collection(db, 'Buyer-info'), (snapshot) => {
+            const arrayData = snapshot.docs.map(doc => ({...doc.data(), id: doc.id}))
+            const filteredArrayData = arrayData.filter(doc => doc.State===true)
+            setDatos(filteredArrayData)
+        }, (error) => console.log(error))
     }
 
     useEffect(() => {
@@ -34,15 +31,15 @@ const TableOrders = () => {
     }, []);
 
     const eliminar = async (dato) => {
-        if (window.confirm("¿Estás Seguro que deseas Eliminar el producto? " + dato.Nombre)) {
+        if (window.confirm(`¿Estás seguro que deseas eliminar a ${dato.Nombre}?`)) {
             await db.collection('Buyer-info').doc(dato.id).update({State: false})
-            toast("Usted acaba de atender un pedido.", {
-                type: "info",
+            toast(`Se eliminó al producto ${dato.Nombre} con éxito.`, {
+                type: "error",
                 autoClose: 2000
             });
-
         }
     };
+
     return (
         <div>
             <div className="titulo">

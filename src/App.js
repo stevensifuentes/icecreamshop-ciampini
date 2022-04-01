@@ -6,7 +6,7 @@ import Signup from './Components/Register/Register'
 import Navigation from './Components/Navegacion/Navigation_'
 import Login from './Components/Login/Login'
 import Catalog from './Components/Catalog'
-import { auth, db } from './Config/Config'
+import { auth, db } from './firebase/firebaseConfig'
 import { CartContextProvider } from './Global/CartContext'
 import { Cart } from './Components/Cart'
 import { AddProducts } from './Components/AddProducts'
@@ -16,6 +16,8 @@ import About from './Components/About/About'
 import Contact from './Components/Contact'
 import Footer from './Components/Footer/Footer'
 import Administrador from './admin/Administrador'
+import { onAuthStateChanged } from 'firebase/auth'
+import { doc, getDoc } from "firebase/firestore";
 
 export class App extends Component {
 
@@ -24,24 +26,22 @@ export class App extends Component {
     }
     
     componentDidMount() {
-        auth.onAuthStateChanged(user => {
+        onAuthStateChanged(auth, async (user) => {
             if (user) {
-                db.collection('Clients').doc(user.uid).get().then(snapshot => {
+                const docRef = doc(db, 'Clients', user.uid)
+                const docSnap = await getDoc(docRef)
+
+                if(docSnap.exists()){
                     this.setState({
-                        user: snapshot.data().Name,
-                        email: snapshot.data().Email
+                        user: docSnap.data().Name,
+                        email: docSnap.data().Email
                     })
                     console.log(user)
-                })
+                }
+            }else {
+                this.setState({ user: null })
             }
-            else {
-                this.setState({
-                    user: null
-                })
-            }
-            
         })
-
     }
 
     render() {

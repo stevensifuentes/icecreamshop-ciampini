@@ -1,21 +1,23 @@
+import { collection, onSnapshot } from 'firebase/firestore';
 import React, { createContext } from 'react'
-import { db } from '../Config/Config'
+import { db } from '../firebase/firebaseConfig'
 
 export const ProductsContext = createContext();
 
 export class ProductsContextProvider extends React.Component {
 
-    state = {
+    state = { 
         products: []
     }
 
     componentDidMount() {
-
         const prevProducts = this.state.products;
-        db.collection('Products').onSnapshot(snapshot => {
-            let changes = snapshot.docChanges();
+
+        onSnapshot(collection(db, 'Products'), (snapshot) => {
+            const changes = snapshot.docChanges()
+
             changes.forEach(change => {
-                if (change.type === 'added') {
+                if (change.type==='added') {
                     prevProducts.push({
                         ProductID: change.doc.id,
                         ProductName: change.doc.data().Nombre,
@@ -27,9 +29,9 @@ export class ProductsContextProvider extends React.Component {
                     products: prevProducts
                 })
             })
-        })
-
+        }, (error) => console.log(error))
     }
+
     render() {
         return (
             <ProductsContext.Provider value={{ products: [...this.state.products] }}>

@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { storage, db } from '../../../Config/Config'
-import "bootstrap/dist/css/bootstrap.min.css";
+import { storage, db } from '../../../firebase/firebaseConfig';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
+import "bootstrap/dist/css/bootstrap.min.css";
 import { toast } from "react-toastify";
 import './TableStyle.css'
 
@@ -16,6 +16,8 @@ import {
     FormGroup,
     ModalFooter,
 } from "reactstrap";
+
+import { collection, doc, onSnapshot, updateDoc } from "firebase/firestore";
 
 const TableProducts = () => {
 
@@ -32,7 +34,7 @@ const TableProducts = () => {
     const [modalInsertar, setModalInsertar] = useState(false);
     const [imagen, setImagen] = useState(null);
     const [error, setError] = useState('');
-    const [currentId, setCurrentId] = useState("");
+    const [currentId, setCurrentId] = useState('');
 
     const types = ['image/png', 'image/jpeg']; // image types
 
@@ -64,45 +66,41 @@ const TableProducts = () => {
     };
 
     const obtenerRegistros = async () => {
-        db.collection('Products').onSnapshot((querySnapshot) => {
-            const docs = [];
-            querySnapshot.forEach((doc) => {
-                if(doc.data().Estado){
-                    docs.push({...doc.data(), id: doc.id});
-                } 
-            });
-            setDatos(docs);
-        });
+        onSnapshot(collection(db, 'Products'), (snapshot) => {
+            const arrayData = snapshot.docs.map(doc => ({...doc.data(), id: doc.id}))
+            const filteredArrayData = arrayData.filter(doc => doc.Estado===true)
+            setDatos(filteredArrayData)
+        }, (error) => console.log(error))
     }
 
     useEffect(() => {
         obtenerRegistros();
     }, []);
 
-    const editar = (dato) => {
+    const editar = async (dato) => {
         const dataActualizar = {
             Nombre: dato.nombre,
             Precio: dato.precio,
             Cantidad: dato.cantidad
         }
-        db.collection('Products').doc(currentId).update(dataActualizar)
-        .then(() => {
-            toast("Producto actualizado con éxito.", {
-                type: "info",
-              });
-                setModalActualizar(false);
-        }).catch(err => setError(err.message));
 
+        try {
+            await updateDoc(doc(db, "Products", currentId), dataActualizar)
+            toast("Producto actualizado con éxito!", {type: "info"});
+            setModalActualizar(false);
+        } catch (error) {
+            console.log('Hubo un error al intentar actualizar al cliente')
+            console.log(error)
+        }
     };
 
     const eliminar = async (dato) => {
-        if (window.confirm("¿Estás Seguro que deseas Eliminar el producto? " + dato.Nombre)) {
-            await db.collection('Products').doc(dato.id).update({Estado: false})
-            toast("Se eliminó el producto con éxito", {
+        if (window.confirm(`¿Estás Seguro que deseas eliminar el producto? ${dato.Nombre}`)) {
+            await updateDoc(doc(db, "Products", dato.id), {Estado: false})
+            toast(`Se eliminó el producto ${dato.Nombre} con éxito.`, {
                 type: "error",
                 autoClose: 2000
             });
-
         }
     };
 

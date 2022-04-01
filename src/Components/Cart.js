@@ -7,7 +7,8 @@ import { ic_remove } from 'react-icons-kit/md/ic_remove'
 import { iosTrashOutline } from 'react-icons-kit/ionicons/iosTrashOutline'
 import { Link } from 'react-router-dom'
 import { useHistory } from 'react-router-dom'
-import { auth } from '../Config/Config'
+import { auth } from '../firebase/firebaseConfig'
+import { onAuthStateChanged } from "firebase/auth";
 import Carro from '../images/carro.svg'
 
 export const Cart = ({ user }) => {
@@ -16,8 +17,8 @@ export const Cart = ({ user }) => {
     const history = useHistory();
 
     useEffect(() => {
-        auth.onAuthStateChanged(user => {
-            if (!user) {
+        onAuthStateChanged(auth, (user) => {
+            if(!user){
                 history.push('/login');
             }
         })

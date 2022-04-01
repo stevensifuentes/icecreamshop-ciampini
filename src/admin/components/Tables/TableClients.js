@@ -1,10 +1,16 @@
 import React, { useEffect, useState } from "react";
-// import { storage, db } from '../../../Config/Config'
-import { storage, db } from '../../../firebase/firebaseConfig'
-import { collection, onSnapshot } from 'firebase/firestore';
-import "bootstrap/dist/css/bootstrap.min.css";
+import { storage, db } from '../../../firebase/firebaseConfig';
+
+import { 
+    collection, 
+    doc, 
+    onSnapshot, 
+    updateDoc } from 'firebase/firestore';
+    
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
+
+import "bootstrap/dist/css/bootstrap.min.css";
 import { toast } from "react-toastify";
 import './TableStyle.css'
 
@@ -81,27 +87,30 @@ const TableClients = () => {
         obtenerRegistros();
     }, []);
 
-    const editar = (dato) => {
+    const editar = async (dato) => {
         const dataActualizar = {
             Name: dato.nombre,
             LastName: dato.apellido,
             Phone: dato.telefono,
             Address: dato.direccion,
-            Email: dato.correo
+            Email: dato.correo,
+            Estado: true
         }
-        db.collection('Clients').doc(currentId).update(dataActualizar)
-        .then(() => {
-            toast("Cliente actualizado con éxito!", {
-                type: "info",
-              });
-                setModalActualizar(false);
-        }).catch(err => setError(err.message));
+
+        try {
+            await updateDoc(doc(db, "Clients", currentId), dataActualizar)
+            toast("Cliente actualizado con éxito!", {type: "info"});
+            setModalActualizar(false);
+        } catch (error) {
+            console.log('Hubo un error al intentar actualizar al cliente')
+            console.log(error)
+        }
     };
 
     const eliminar = async (dato) => {
-        if (window.confirm("¿Estás seguro que deseas eliminar a este cliente? " + dato.Name+""+dato.LastName)) {
-            await db.collection('Clients').doc(dato.id).update({Estado: false})
-            toast("Se eliminó al cliente con éxito.", {
+        if (window.confirm(`¿Estás seguro que deseas eliminar a ${dato.Name} ${dato.LastName}?`)) {
+            await updateDoc(doc(db, "Clients", currentId), {Estado: false})
+            toast(`Se eliminó al cliente ${dato.Name} con éxito.`, {
                 type: "error",
                 autoClose: 2000
             });

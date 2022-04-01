@@ -1,8 +1,11 @@
 import React, { useState } from 'react'
-import { auth, db } from '../../Config/Config';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { doc, setDoc } from 'firebase/firestore';
 import { Link } from 'react-router-dom'
-import './style.css';
 import { toast } from "react-toastify";
+
+import { auth, db } from '../../firebase/firebaseConfig';
+import './style.css';
 
 const Signup = (props) => {
 
@@ -16,25 +19,36 @@ const Signup = (props) => {
     const [error, setError] = useState('');
 
     // signup
-    const signup = (e) => {
+    const signup = async (e) => {
         e.preventDefault();
-        auth.createUserWithEmailAndPassword(email, password).then((cred) => {
-            db.collection('Clients').doc(cred.user.uid).set({
-                Name: name,
-                LastName: lastname,
-                Phone: phone,
-                Address: address,
-                Email: email,
-                Password: password
-            }).then(() => {
-                setEmail('');
-                setPassword('');
-                toast("Registrado con exito.", {
-                    type: "info",
-                  });
-                props.history.push('/login');
-            }).catch(err => setError(err.message));
-        }).catch(err => setError(err.message));
+        if(name && lastname && phone && address && email && password){
+            createUserWithEmailAndPassword(auth, email, password)
+            .then(async (userCredential) => {
+                const newClient = {
+                    name, 
+                    lastname,
+                    phone,
+                    address,
+                    email,
+                    password,
+                    state: true
+                }
+                await setDoc(doc(db, 'Clients', userCredential.user.uid), newClient)
+                    .then(() => {
+                        setEmail('');
+                        setPassword('');
+                        toast("Registrado con exito.", { type: "info" });
+                        props.history.push('/login');
+                    })
+                    .catch(err => setError(err.message));
+            })
+            .catch((error) => {
+                console.log(`ErrorCode: ${error.code}`);
+                console.log(`errorMessage: ${error.message}`);
+            })
+        }else {
+            toast("Ingrese todos los campos.", { type: "warning" });
+        }
     }
 
     return (
