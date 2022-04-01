@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { storage, db } from '../../../Config/Config'
+// import { storage, db } from '../../../Config/Config'
+import { storage, db } from '../../../firebase/firebaseConfig'
+import { collection, onSnapshot } from 'firebase/firestore';
 import "bootstrap/dist/css/bootstrap.min.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
@@ -21,7 +23,7 @@ const TableClients = () => {
 
     const initialStateValues = {
         nombre: '',
-        apellido: 0,
+        apellido: '',
         telefono: 0, 
         direccion: true,
         correo: '', 
@@ -68,18 +70,11 @@ const TableClients = () => {
         setModalInsertar(false);
     };
 
-    const obtenerRegistros = async () => {
-        db.collection('Clients').onSnapshot((querySnapshot) => {
-            const docs = [];
-            querySnapshot.forEach((doc) => {
-                let correo = doc.data().Email
-                let correito = correo.split("@");
-                if(correito[1]!=="admin.com"){
-                    docs.push({...doc.data(), id: doc.id});
-                }
-            });
-            setDatos(docs);
-        });
+    const obtenerRegistros = () => {
+        onSnapshot(collection(db, 'Clients'), (snapshot) => {
+            const arrayData = snapshot.docs.map(doc => ({...doc.data(), id: doc.id}))
+            setDatos(arrayData)
+          }, (error) => console.log(error))
     }
 
     useEffect(() => {
