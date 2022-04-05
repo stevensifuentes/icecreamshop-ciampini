@@ -1,7 +1,6 @@
 import React from 'react';
 import './style.css'
 
-
 const Parallax = () => {
     return (
         <>

@@ -1,6 +1,6 @@
 import React from 'react';
 import './style.css';
-import {Label, Input, FormText } from 'reactstrap';
+import { Label, Input, FormText } from 'reactstrap';
 
 const CardRegister = (props) => {
     const initialStateValues = {

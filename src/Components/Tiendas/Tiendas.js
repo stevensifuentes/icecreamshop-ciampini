@@ -18,7 +18,6 @@ const items = [
         text4: 'Viernes y Sábados de 13 a 01 hs',
         text5: 'Domingos de 11 a 23 hs',
         src: T1,
-
     },
     {
         tile: 'Av. Canto Grande',
@@ -29,7 +28,6 @@ const items = [
         text4: 'Viernes y Sábados de 13 a 01 hs',
         text5: 'Domingos de 11 a 23 hs',
         src: T2,
-
     },
     {
         tile: 'Av. Las Flores',
@@ -40,13 +38,10 @@ const items = [
         text4: 'Viernes y Sábados de 13 a 01 hs',
         text5: 'Domingos de 11 a 23 hs',
         src: T3,
-
     }
-
 ];
 
-const Tiendas = (props) => {
-
+const Tiendas = () => {
     const Items = items.map((item) => {
         return (
             <Card>

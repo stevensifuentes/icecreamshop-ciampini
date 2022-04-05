@@ -1,7 +1,7 @@
 import React from 'react';
 import Products from './Products/Products';
 
-const Catalog = (props) => {
+const Catalog = () => {
     return (
         <div style={{
             marginTop: '80px'

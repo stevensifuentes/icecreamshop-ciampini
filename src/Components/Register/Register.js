@@ -1,7 +1,7 @@
 import React from 'react';
-import './style.css';
 import portLogin from './portLogin.png';
 import Signup from './Signup';
+import './style.css';
 
 const Register = () => {
     return (

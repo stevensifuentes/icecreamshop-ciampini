@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
+import { collection, onSnapshot } from "firebase/firestore";
 import ADMIN from './Admin.jpg'
 import { db } from '../../firebase/firebaseConfig'
-import { collection, onSnapshot } from "firebase/firestore";
 
 import {
     Button,
@@ -149,14 +149,11 @@ const UserProfile = () => {
                     <Col md="4">
                         <Card className="card-user">
                             <div className="card-image">
-                                <img
-                    alt="Foto de perfil"
-                    src={ADMIN}
-                  ></img>
+                                <img alt="Foto de perfil" src={ADMIN} />
                             </div>
                             <Card.Body>
                                 <div className="author text-center">
-                                    <a href="#" onClick={(e) => e.preventDefault()}>
+                                    <a href='#' onClick={(e) => e.preventDefault()}>
                                         <h5 className="title">{info.nombre +" "+info.apellido}</h5>
                                     </a>
                                     <p className="description">Administrador</p>

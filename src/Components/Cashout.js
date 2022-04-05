@@ -1,15 +1,14 @@
 import React, { useState, useEffect, useContext } from 'react'
 import { addDoc, collection, doc, onSnapshot } from 'firebase/firestore';
 import { onAuthStateChanged } from 'firebase/auth';
-import { useHistory } from 'react-router-dom'
-import { toast } from "react-toastify";
 import { auth, db } from '../firebase/firebaseConfig'
+import { useNavigate } from 'react-router-dom'
+import { toast } from "react-toastify";
 import { CartContext } from '../Global/CartContext'
 import Navbar from './Navbar';
 
 export const Cashout = (props) => {
-
-    const history = useHistory();
+    const navigate = useNavigate();
 
     const { totalPrice, totalQty, dispatch } = useContext(CartContext);
 
@@ -31,7 +30,7 @@ export const Cashout = (props) => {
                 });
             }
             else {
-                history.push('/login')
+                navigate('/login')
             }
         })
     })
@@ -63,7 +62,7 @@ export const Cashout = (props) => {
                 dispatch({ type: 'EMPTY' })
                 toast("¡Tu pedido se ha realizado de manera correcta! Gracias por la compra", { type: "info" });
                 setTimeout(() => {
-                    history.push('/products')
+                    navigate('/products')
                 }, 3000)
             }
         })

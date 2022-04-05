@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 import logo from './LOGO.png'
 import {
   CDBSidebar,
@@ -7,8 +7,8 @@ import {
   CDBSidebarHeader,
   CDBSidebarMenu,
   CDBSidebarMenuItem,
-} from 'cdbreact';
-import { NavLink } from 'react-router-dom';
+} from 'cdbreact'
+import { NavLink } from 'react-router-dom'
  
 const Sidebar = () => {
   return (
@@ -30,16 +30,16 @@ const Sidebar = () => {
  
         <CDBSidebarContent className="sidebar-content" >
           <CDBSidebarMenu>
-            <NavLink exact to="/userProfile" activeClassName="activeClicked">
+            <NavLink to='/userProfile' activeClassName="activeClicked">
               <CDBSidebarMenuItem icon="user">Perfil</CDBSidebarMenuItem>
             </NavLink>
-            <NavLink exact to="/productos" activeClassName="activeClicked">
+            <NavLink to='/productos' activeClassName="activeClicked">
               <CDBSidebarMenuItem icon="table">Productos</CDBSidebarMenuItem>
             </NavLink>
-            <NavLink exact to="/pedidos" activeClassName="activeClicked">
+            <NavLink to='/pedidos' activeClassName="activeClicked">
               <CDBSidebarMenuItem icon="chart-line">Pedidos</CDBSidebarMenuItem>
             </NavLink>
-            <NavLink exact to="/clientes" activeClassName="activeClicked">
+            <NavLink to='/clientes' activeClassName="activeClicked">
               <CDBSidebarMenuItem icon="chart-line">Clientes</CDBSidebarMenuItem>
             </NavLink>
           </CDBSidebarMenu>
@@ -58,7 +58,7 @@ const Sidebar = () => {
         </CDBSidebarFooter>
       </CDBSidebar>
     </div>
-  );
-};
+  )
+}
  
-export default Sidebar;
+export default Sidebar

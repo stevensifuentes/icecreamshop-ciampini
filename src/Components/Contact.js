@@ -2,7 +2,7 @@ import React from 'react';
 import CardContact from './CardContact/CardContact';
 import Map from './Maps/Map'
 
-const Contact = (props) => {
+const Contact = () => {
     return (
         <div style={{
             marginTop: '100px'

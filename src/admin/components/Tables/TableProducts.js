@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import { storage, db } from '../../../firebase/firebaseConfig';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
-import "bootstrap/dist/css/bootstrap.min.css";
 import { toast } from "react-toastify";
+import "bootstrap/dist/css/bootstrap.min.css";
 import './TableStyle.css'
 
 import {

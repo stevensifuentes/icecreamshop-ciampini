@@ -1,17 +1,19 @@
 import React, { useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLock, faEnvelope } from '@fortawesome/free-solid-svg-icons';
-import { auth } from '../../firebase/firebaseConfig';
 import { signInWithEmailAndPassword } from "firebase/auth";
-import { Link } from 'react-router-dom'
+import { auth } from '../../firebase/firebaseConfig';
+import { NavLink, useNavigate } from 'react-router-dom'
 
 import portLogin from './portLogin.png';
 import './style.css';
 
-const Login = (props) => {
+const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
+
+    const navigate = useNavigate();
 
     const login = (e) => {
         e.preventDefault();
@@ -21,10 +23,11 @@ const Login = (props) => {
                 // Signed in
                 const user = userCredential.user;
                 console.log(`From Login: ${user}`)
-                (email==='pedro@admin.com' && password==='administrador') ?
-                props.history.push('/UserProfile')
-                    :
-                props.history.push('/products')
+                if(email==='pedro@admin.com' && password==='administrador'){
+                    navigate('/UserProfile')
+                }else{
+                    navigate('/products')
+                }
             })
             .catch((error) => {
                 console.log(`ErrorCode: ${error.code}`);
@@ -88,8 +91,8 @@ const Login = (props) => {
                         </button>
                         <div className="mt-3 text-center">
                             <label className="form-check-label" htmlFor="exampleCheck3">¿No tienes una cuenta?</label>
-                            <Link to="/signup" className="py-3 px-0 px-lg-3" 
-                            style={{color: 'blue'}}>Registrate</Link>
+                            <NavLink to="/signup" className="py-3 px-0 px-lg-3" 
+                            style={{color: 'blue'}}>Registrate</NavLink>
                         </div>
                     </form>
                     {error && <span className='error-msg'>{error}</span>}

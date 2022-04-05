@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { doc, setDoc } from 'firebase/firestore';
-import { Link } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import { toast } from "react-toastify";
 
 import { auth, db } from '../../firebase/firebaseConfig';
@@ -128,7 +128,7 @@ const Signup = (props) => {
             {error && <span className='error-msg'>{error}</span>}
             <div className="text-center">
                 ¿Ya tienes una cuenta? 
-                <Link to="/login" className="py-3 px-0 px-lg-3 text-center" href="#contact">Iniciar Sesión</Link>
+                <NavLink to="/login" className="py-3 px-0 px-lg-3 text-center" >Iniciar Sesión</NavLink>
             </div>
         </> 
     )

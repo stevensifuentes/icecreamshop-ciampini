@@ -4,7 +4,7 @@ import Heladeria from './Heladeria.jpg';
 import Estadisticas from '../Estadisticas/Estadisticas';
 import Founders from '../Founders/Founders';
 
-const About = (props) => {
+const About = () => {
     let data = {
         Clientes: 2000,
         Productos: 100,

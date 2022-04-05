@@ -1,17 +1,18 @@
-import { collection, onSnapshot } from 'firebase/firestore';
-import React, { createContext } from 'react'
+import React, { createContext, useState, useEffect } from 'react'
+import { collection, onSnapshot } from 'firebase/firestore'
 import { db } from '../firebase/firebaseConfig'
 
-export const ProductsContext = createContext();
+export const ProductsContext = createContext()
 
-export class ProductsContextProvider extends React.Component {
-
-    state = { 
+export const ProductsContextProvider = ({ children }) => {
+    const initialState = {
         products: []
     }
 
-    componentDidMount() {
-        const prevProducts = this.state.products;
+    const [state, setState] = useState(initialState)
+
+    useEffect(() => {
+        const prevProducts = state.products;
 
         onSnapshot(collection(db, 'Products'), (snapshot) => {
             const changes = snapshot.docChanges()
@@ -25,19 +26,17 @@ export class ProductsContextProvider extends React.Component {
                         ProductImg: change.doc.data().Imagen
                     })
                 }
-                this.setState({
+                setState({
                     products: prevProducts
                 })
             })
         }, (error) => console.log(error))
-    }
+    }, [])
 
-    render() {
-        return (
-            <ProductsContext.Provider value={{ products: [...this.state.products] }}>
-                {this.props.children}
-            </ProductsContext.Provider>
-        )
-    }
+    return (
+        <ProductsContext.Provider value={ state }>
+            { children }
+        </ProductsContext.Provider>
+    )
 }
 

@@ -3,7 +3,7 @@ import './style.css'
 import avatar from './avatar.png';
 import avatar5 from './avatar5.png';
 
-const Founders = (props) => {    
+const Founders = () => {    
     return (
         <section className="founders text-center bg-light">
             <div className="container">

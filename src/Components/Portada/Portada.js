@@ -1,7 +1,7 @@
 import React from 'react';
 import './style.css';
 
-const Portada = (props) => {
+const Portada = () => {
     return (
         <header className="hero-image">
         </header>

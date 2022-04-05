@@ -4,7 +4,7 @@ import "./style.css";
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faEnvelopeSquare} from '@fortawesome/free-solid-svg-icons';
 
-const CardContact = (props) => {
+const CardContact = () => {
     return (
         <section className="mt-5 mb-5">
             <div className="card rounded-3">

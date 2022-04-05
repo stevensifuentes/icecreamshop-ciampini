@@ -1,18 +1,17 @@
 import React, { useEffect } from 'react'
 import Navbar from '../../Components/Navbar'
-import { useHistory } from 'react-router-dom'
-import { auth } from '../../Config/Config'
+import { useNavigate } from 'react-router-dom'
+import { auth } from '../../firebase/firebaseConfig'
 // import CardContact from '../../Components/CardContact/CardContact'
 
 const Home = ({ user }) => {
-
-    const history = useHistory();
+    const navigate = useNavigate();
 
     useEffect(() => {
         // forcing user to signup
-        auth.onAuthStateChanged(user => {
+        onAuthStateChanged(auth, (user) => {
             if (!user) {
-                history.push('/login');
+                navigate('/login');
             }
         })
     })

@@ -1,4 +1,5 @@
 import React from 'react';
+
 const pro = () => {
     return (
         <div>
@@ -12,7 +13,8 @@ const pro = () => {
                         title="paletas_2" 
                         height="auto" 
                         width="auto" 
-                        className="wp-image-163 bordes" /></span>
+                        className="wp-image-163 bordes" />
+                </span>
             </div>
         </div>
     )

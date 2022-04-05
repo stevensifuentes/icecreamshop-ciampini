@@ -1,21 +1,21 @@
 import React, { useEffect } from 'react'
+import { onAuthStateChanged } from 'firebase/auth'
+import { useNavigate } from 'react-router-dom'
+import { auth } from '../firebase/firebaseConfig'
+
 import Navbar from './Navbar'
 import { Products } from './Products'
-import { useHistory } from 'react-router-dom'
-import { auth } from '../firebase/firebaseConfig'
-import { onAuthStateChanged } from 'firebase/auth'
 
 const Home = ({ user }) => {
-
-    const history = useHistory();
+    const navigate = useNavigate();
 
     useEffect(() => {
         onAuthStateChanged(auth, (user) => {
             if (!user) {
-                history.push('/login');
+                navigate('/login');
             }
         })
-    }, [])
+    })
 
     return (
         <div className='wrapper' style={{position:'relative'}}>

@@ -2,10 +2,11 @@ import React from 'react'
 import './style.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import LOGO_MARCA from './LOGO.png'
+import shoppingCart from './icon_shopping_cart.svg'; 
 
-const Navigation_ = (props) => {
+const Navigation_ = () => {
     return (
         <header>
             <nav className="navbar navbar-expand-lg  fixed-top nav" id="mainNav">
@@ -28,31 +29,31 @@ const Navigation_ = (props) => {
                 </button>
                 <div className="collapse navbar-collapse ml text-info" id="navbarResponsive">
                     <ul className="navbar-nav ms-auto">
-                        <li 
-                            className="nav-item mx-0 mx-lg-1">
-                                <Link to="/" className="nav-link py-3 px-0 px-lg-3 rounded" href="#home">Inicio</Link>
+                        <li className="nav-item mx-0 mx-lg-1">
+                                <NavLink to="/" className="nav-link py-3 px-0 px-lg-3 rounded">Inicio</NavLink>
                         </li>
-                        <li 
-                            className="nav-item mx-0 mx-lg-1">
-                                <Link to="/catalog" className="nav-link py-3 px-0 px-lg-3 rounded" href="#products">Productos</Link>
+                        <li className="nav-item mx-0 mx-lg-1">
+                                <NavLink to="/catalog" className="nav-link py-3 px-0 px-lg-3 rounded">Productos</NavLink>
                         </li>
-                        <li 
-                            className="nav-item mx-0 mx-lg-1">
-                                <Link to="/about" className="nav-link py-3 px-0 px-lg-3 rounded" href="#about">Sobre Nosotros</Link>
+                        <li className="nav-item mx-0 mx-lg-1">
+                                <NavLink to="/about" className="nav-link py-3 px-0 px-lg-3 rounded">Sobre Nosotros</NavLink>
                         </li>
-                        <li 
-                            className="nav-item mx-0 mx-lg-1">
-                                <Link to="/contact" className="nav-link py-3 px-0 px-lg-3 rounded" href="#contact">Contacto</Link>
+                        <li className="nav-item mx-0 mx-lg-1">
+                                <NavLink to="/contact" className="nav-link py-3 px-0 px-lg-3 rounded">Contacto</NavLink>
+                        </li>
+                        <li className="navbar-shopping-cart">
+                            <img src={shoppingCart} alt="shopping cart" />
+                            {/* {state.cart.length > 0 ? <div>{state.cart.length}</div> : null} */}
                         </li>
                     </ul>
-                    <Link to="/login">
+                    
+                    <NavLink to="/login">
                         <button
                             className="btn btn-info"
-                            id="login"
-                        >
+                            id="login">
                             Iniciar Sesión
                         </button>
-                    </Link>
+                    </NavLink>
                 </div>
             </nav>
         </header>

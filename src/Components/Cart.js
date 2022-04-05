@@ -1,25 +1,24 @@
 import React, { useContext, useEffect } from 'react'
 import { CartContext } from '../Global/CartContext'
-import  Navbar  from './Navbar';
 import { Icon } from 'react-icons-kit'
 import { ic_add } from 'react-icons-kit/md/ic_add'
 import { ic_remove } from 'react-icons-kit/md/ic_remove'
 import { iosTrashOutline } from 'react-icons-kit/ionicons/iosTrashOutline'
-import { Link } from 'react-router-dom'
-import { useHistory } from 'react-router-dom'
-import { auth } from '../firebase/firebaseConfig'
+import { NavLink, useNavigate } from 'react-router-dom'
 import { onAuthStateChanged } from "firebase/auth";
+import { auth } from '../firebase/firebaseConfig'
+import Navbar from './Navbar';
 import Carro from '../images/carro.svg'
 
 export const Cart = ({ user }) => {
     const { shoppingCart, dispatch, totalPrice, totalQty } = useContext(CartContext);
 
-    const history = useHistory();
+    const navigate = useNavigate();
 
     useEffect(() => {
         onAuthStateChanged(auth, (user) => {
             if(!user){
-                history.push('/login');
+                navigate('/login');
             }
         })
     })
@@ -37,7 +36,7 @@ export const Cart = ({ user }) => {
                                 alt="Carro de compras" 
                                 style={{width: '20%', padding:'5px', marginTop:'80px'}}/>
                             <h4>¡Ups! su carrito se encuentra vacío.</h4>
-                            <div><Link to="/products">Añade un producto</Link></div>
+                            <div><NavLink to="/products">Añade un producto</NavLink></div>
                         </>
                     }
                     {shoppingCart && shoppingCart.map(cart => (
@@ -87,11 +86,11 @@ export const Cart = ({ user }) => {
                             <span>Cantidad Total</span>
                             <span>{totalQty}</span>
                         </div>
-                        <Link to='cashout' className='cashout-link'>
+                        <NavLink to='/cashout' className='cashout-link'>
                             <button className='btn btn-primary btn-md' style={{ marginTop: 5 + 'px' }}>
                                 Comprar
                             </button>
-                        </Link>
+                        </NavLink>
                     </div>}
                 </div>
             </>

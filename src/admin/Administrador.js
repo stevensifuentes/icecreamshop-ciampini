@@ -1,20 +1,20 @@
 import React, { useEffect } from 'react'
 import AppAdmin from './AppAdmin'
-import { useHistory } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { auth } from '../firebase/firebaseConfig'
 import { onAuthStateChanged } from 'firebase/auth'
 
 const Administrador = ({ user }) => {
 
-    const history = useHistory();
+    const navigate = useNavigate()
 
     useEffect(() => {
         onAuthStateChanged(auth, (user) => {
             if (!user) {
-                history.push('/login');
+                navigate('/login')
             }
         })
-    })
+    }, [])
 
     return (
         <div className='wrapper'>
@@ -23,4 +23,4 @@ const Administrador = ({ user }) => {
     )
 }
 
-export default Administrador;
+export default Administrador
