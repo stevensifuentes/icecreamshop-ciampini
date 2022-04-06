@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
+import { collection, doc, onSnapshot, updateDoc } from "firebase/firestore";
 import { db } from '../../../firebase/firebaseConfig';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
-import "bootstrap/dist/css/bootstrap.min.css";
 import { toast } from "react-toastify";
+import "bootstrap/dist/css/bootstrap.min.css";
 import './TableStyle.css'
 
 import {
@@ -11,8 +12,6 @@ import {
     Button,
     Container,
 } from "reactstrap";
-
-import { collection, onSnapshot } from "firebase/firestore";
 
 const TableOrders = () => {
 
@@ -31,9 +30,9 @@ const TableOrders = () => {
     }, []);
 
     const eliminar = async (dato) => {
-        if (window.confirm(`¿Estás seguro que deseas eliminar a ${dato.Nombre}?`)) {
-            await db.collection('Buyer-info').doc(dato.id).update({State: false})
-            toast(`Se eliminó al producto ${dato.Nombre} con éxito.`, {
+        if (window.confirm(`¿Estás seguro que deseas eliminar a ${dato.BuyerName}?`)) {
+            await updateDoc(doc(db, "Buyer-info", dato.id), {State: false})
+            toast(`Se eliminó al cliente ${dato.BuyerName} con éxito.`, {
                 type: "error",
                 autoClose: 2000
             });

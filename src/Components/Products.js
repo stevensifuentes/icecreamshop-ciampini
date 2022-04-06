@@ -2,8 +2,7 @@ import React, { useContext } from 'react'
 import { ProductsContext } from '../Global/ProductsContext'
 import { CartContext } from '../Global/CartContext'
 
-export const Products = () => {
-
+const Products = () => {
     const { products } = useContext(ProductsContext);
     const { dispatch } = useContext(CartContext);
 
@@ -33,11 +32,12 @@ export const Products = () => {
                             style={{
                                 backgroundColor: '#61BA9E',
                                 borderRadius: '50px',                     
-                            }}
-                            >Añadir al carrito</button>
+                            }}>Añadir al carrito</button>
                     </div>
                 ))}
             </div>
         </>
     )
 }
+
+export default Products

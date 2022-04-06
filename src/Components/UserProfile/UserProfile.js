@@ -23,14 +23,14 @@ let info = {
 const UserProfile = () => {
     const obtenerRegistros = async () => {
         onSnapshot(collection(db, 'Clients'), (snapshot) => {
-            // console.log(snapshot.docs[1].data())
-            const admin = snapshot.docs.filter(doc => (doc.data().Email).split('@')[1]==='admin.com')
+            // console.log(snapshot.docs.map(s => s))
+            const admin = snapshot.docs.filter(doc => (doc.data().Email).split('@')[1]==='admin.com')[0].data()
             info = {
-                nombre: admin.data().Name,
-                apellido: admin.data().LastName,
-                telefono: admin.data().Phone, 
-                direccion: admin.data().Address,
-                correo: admin.data().Email
+                nombre: admin.Name,
+                apellido: admin.LastName,
+                telefono: admin.Phone, 
+                direccion: admin.Address,
+                correo: admin.Email
             };
           }, (error) => console.log(error))
     }
@@ -55,7 +55,7 @@ const UserProfile = () => {
                                             <Form.Group>
                                                 <label>Compañia/Empresa</label>
                                                 <Form.Control
-                                                    defaultValue="Heladeria Ciampini"
+                                                    defaultValue="Ciampini Ice Cream shop"
                                                     disabled
                                                     placeholder="Company"
                                                     type="text"

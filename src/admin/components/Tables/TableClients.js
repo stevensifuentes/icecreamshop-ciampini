@@ -1,18 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { storage, db } from '../../../firebase/firebaseConfig';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEdit, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
+import "bootstrap/dist/css/bootstrap.min.css";
+import { toast } from "react-toastify";
+import './TableStyle.css'
 
 import { 
     collection, 
     doc, 
     onSnapshot, 
     updateDoc } from 'firebase/firestore';
-    
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEdit, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
-
-import "bootstrap/dist/css/bootstrap.min.css";
-import { toast } from "react-toastify";
-import './TableStyle.css'
 
 import {
     Table,
@@ -26,7 +24,6 @@ import {
 } from "reactstrap";
 
 const TableClients = () => {
-
     const initialStateValues = {
         nombre: '',
         apellido: '',
@@ -117,6 +114,7 @@ const TableClients = () => {
         }
     };
 
+    /* Falta actualizar */
     const insertar = (e) => {
         const uploadTask = storage.ref(`clients-images/${imagen.name}`).put(imagen);
         uploadTask.on('state_changed', snapshot => {

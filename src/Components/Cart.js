@@ -13,19 +13,19 @@ import Carro from '../images/carro.svg'
 export const Cart = ({ user }) => {
     const { shoppingCart, dispatch, totalPrice, totalQty } = useContext(CartContext);
 
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
 
-    useEffect(() => {
+    /* useEffect(() => {
         onAuthStateChanged(auth, (user) => {
             if(!user){
                 navigate('/login');
             }
         })
-    })
+    }) */
 
     return (
         <>
-            <Navbar user={user} />
+            {/* <Navbar user={user} /> */}
             <>
                 {shoppingCart.length !== 0 && <h1 className="text-center">Carrito</h1>}
                 <div className='cart-container' style={{height: '80vh'}}>
@@ -36,7 +36,7 @@ export const Cart = ({ user }) => {
                                 alt="Carro de compras" 
                                 style={{width: '20%', padding:'5px', marginTop:'80px'}}/>
                             <h4>¡Ups! su carrito se encuentra vacío.</h4>
-                            <div><NavLink to="/products">Añade un producto</NavLink></div>
+                            <div><NavLink to="/catalog">Añade un producto</NavLink></div>
                         </>
                     }
                     {shoppingCart && shoppingCart.map(cart => (
@@ -94,7 +94,7 @@ export const Cart = ({ user }) => {
                     </div>}
                 </div>
             </>
-            <div className="py-4 text-center text-white mt-5"
+           {/*  <div className="py-4 text-center text-white mt-5"
             style={{
                 bottom: '-10',
                 backgroundColor: '#1a252f',    
@@ -102,7 +102,7 @@ export const Cart = ({ user }) => {
                 width: '100%'
             }}>
                 <small>Copyright &copy; Hecho con ❤ en Perú por Stevens Sifuentes y Danny Sanchez</small>
-            </div>
+            </div> */}
         </>
     )
 }

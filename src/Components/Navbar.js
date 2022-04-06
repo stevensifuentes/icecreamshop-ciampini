@@ -14,13 +14,11 @@ const Navbar = ({ user }) => {
 
     const handleLogout = () => {
         signOut(auth).then(() => {
-            navigate('/login');
+            navigate('/login')
         }).catch((error) => {
             console.log(error)
         })
     }
-
-    console.log(user);
 
     return (
         <>
@@ -54,7 +52,7 @@ const Navbar = ({ user }) => {
                         <img src={logo} alt="Logo de la página" />
                     </div>
                     <div className='rightside'>
-                        <span><NavLink to="/products" className='navlink text-white' style={{ fontSize: '18px'}}>{user}</NavLink></span>
+                        <span><NavLink to="/products-user" className='navlink text-white' style={{ fontSize: '18px'}}>{user}</NavLink></span>
                         <span><NavLink to="/cartproducts" className='navlink'><Icon icon={cart} style={{color: 'white'}}/></NavLink></span>
                         <span className='no-of-products' >{totalQty}</span>
                         <span><button className='logout-btn btn-info' onClick={handleLogout}>Cerrar Sesión</button></span>

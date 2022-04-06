@@ -24,9 +24,9 @@ const Login = () => {
                 const user = userCredential.user;
                 console.log(`From Login: ${user}`)
                 if(email==='pedro@admin.com' && password==='administrador'){
-                    navigate('/UserProfile')
+                    navigate('/administrator')
                 }else{
-                    navigate('/products')
+                    navigate('/products-user')
                 }
             })
             .catch((error) => {

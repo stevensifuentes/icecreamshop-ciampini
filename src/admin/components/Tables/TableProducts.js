@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { storage, db } from '../../../firebase/firebaseConfig';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEdit, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
-import { toast } from "react-toastify";
-import "bootstrap/dist/css/bootstrap.min.css";
+import { collection, doc, onSnapshot, updateDoc } from "firebase/firestore"
+import { storage, db } from '../../../firebase/firebaseConfig'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faEdit, faTrashAlt } from '@fortawesome/free-solid-svg-icons'
+import { toast } from "react-toastify"
+import "bootstrap/dist/css/bootstrap.min.css"
 import './TableStyle.css'
 
 import {
@@ -17,10 +18,7 @@ import {
     ModalFooter,
 } from "reactstrap";
 
-import { collection, doc, onSnapshot, updateDoc } from "firebase/firestore";
-
 const TableProducts = () => {
-
     const initialStateValues = {
         nombre: '',
         precio: 0,
@@ -103,7 +101,7 @@ const TableProducts = () => {
             });
         }
     };
-
+    /* FALTA ACTUALIZAR */
     const insertar = (e) => {
         const uploadTask = storage.ref(`product-images/${imagen.name}`).put(imagen);
         uploadTask.on('state_changed', snapshot => {
