@@ -6,7 +6,7 @@ import { doc, getDoc } from "firebase/firestore";
 
 import Home from './Components/Home'
 import Signup from './Components/Register/Register'
-import Navigation from './Components/Navegacion/Navigation_'
+import Navigation from './Components/Navegacion/Navigation'
 import Login from './Components/Login/Login'
 import Catalog from './Components/Catalog'
 import { Cart } from './Components/Cart'
