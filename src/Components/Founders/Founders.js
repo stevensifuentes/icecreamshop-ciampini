@@ -1,32 +1,31 @@
-import React from 'react';
-import './style.css'
-import avatar from './avatar.png';
-import avatar5 from './avatar5.png';
+import React from 'react'
+import founderOne from './founderOne.png'
+import founderTwo from './founderTwo.png'
+
+import './founders.style.scss'
 
 const Founders = () => {    
     return (
-        <section className="founders text-center bg-light">
+        <section className="founders-section text-center">
             <div className="container">
                 <h2 className="mb-5">Fundadores</h2>
                 <div className="row">
                     <div className="col-lg-6">
                         <div className="founder-item mx-auto mb-5 mb-lg-0">
-                            <img className="img-fluid rounded-circle mb-3" src={avatar5} alt="Fundador 1" />
+                            <img className="img-fluid rounded-circle mb-3" src={ founderOne } alt="FounderOne" />
                             <h5>Stevens Sifuentes</h5>
-                            {/* <p className="font-weight-light mb-0">"This is fantastic! Thanks so much guys!"</p> */}
                         </div>
                     </div>
                     <div className="col-lg-6">
                         <div className="founder-item mx-auto mb-5 mb-lg-0">
-                            <img className="img-fluid size rounded-circle mb-3" src={avatar} alt="Fundador 2" />
+                            <img className="img-fluid size rounded-circle mb-3" src={ founderTwo } alt="FounderTwo" />
                             <h5>Danny Sanchez</h5>
-                            {/* <p className="font-weight-light mb-0">"Thanks so much for making these free resources available to us!"</p> */}
                         </div>
                     </div>
                 </div>
             </div>
         </section>
-    );
+    )
 }
 
-export default Founders;
+export default Founders
