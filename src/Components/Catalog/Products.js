@@ -1,6 +1,7 @@
 import React, { useContext } from 'react'
-import { ProductsContext } from '../Global/ProductsContext'
-import { CartContext } from '../Global/CartContext'
+import ReactLoading from 'react-loading'
+import { ProductsContext } from '../../Global/ProductsContext'
+import { CartContext } from '../../Global/CartContext'
 
 const Products = () => {
     const { products } = useContext(ProductsContext);
@@ -8,15 +9,19 @@ const Products = () => {
 
     return (
         <>
-            {products.length !== 0 && <h1 className="text-center">Nuestros Helados</h1>}
+            { products.length !== 0 && <h1 className="text-center">Nuestros Helados</h1> }
             <div className='products-container'>
-                {products.length === 0 && <div>Su internet está lento... o no hay productos</div>}
-                {products.map(product => (
+                { products.length === 0 && <ReactLoading 
+                                                type='bubbles' 
+                                                color='#092c4c' 
+                                                height={'10%'} 
+                                                width={'10%'}/> }
+                { products.map(product => (
                     <div className='product-card' key={product.ProductID}
-                    style={{
-                        borderRadius: '10px',
-                        fontSize: '1em'
-                    }}>
+                        style={{
+                            borderRadius: '10px',
+                            fontSize: '1em'
+                        }}>
                         <div className='product-img'>
                             <img src={product.ProductImg} alt="not found" />
                         </div>
@@ -34,7 +39,7 @@ const Products = () => {
                                 borderRadius: '50px',                     
                             }}>Añadir al carrito</button>
                     </div>
-                ))}
+                )) }
             </div>
         </>
     )

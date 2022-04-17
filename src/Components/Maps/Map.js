@@ -1,6 +1,6 @@
-import React from 'react';
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
-import './style.css';
+import React from 'react'
+import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
+import './map.style.scss'
 
 const Mapa = () => {
     const position = [51.505, -0.09]

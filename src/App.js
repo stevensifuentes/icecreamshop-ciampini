@@ -8,7 +8,7 @@ import Home from './Components/Home'
 import Signup from './Components/Register/Register'
 import Navigation from './Components/Navegacion/Navigation'
 import Login from './Components/Login/Login'
-import Catalog from './Components/Catalog'
+import Catalog from './Components/Catalog/Catalog'
 import { Cart } from './Components/Cart'
 import { AddProducts } from './Components/AddProducts'
 import { Cashout } from './Components/Cashout'
@@ -25,7 +25,7 @@ import Clients from './admin/components/Tables/TableClients'
 import TableProducts from './admin/components/Tables/TableProducts';
 import TableOrders from './admin/components/Tables/TableOrders';
 import TableClients from './admin/components/Tables/TableClients';
-import Products from  './Components/Products'
+import Products from  './Components/Catalog/Products'
 
 const App = () => {
     const [user, setUser] = useState('')
@@ -52,7 +52,7 @@ const App = () => {
                 <Routes>
                     <Route index element={<Inicio />} />                                 
                     {/* <Route path='catalog' element={<Catalog />} /> */}
-                    <Route path='catalog' element={<Products />} />
+                    <Route path='catalog' element={<Catalog />} />
                     <Route path='about' element={<About />} />                             
                     <Route path='contact' element={<Contact />} /> 
                     <Route path='login' element={<Login />} />                             

@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import { auth } from '../firebase/firebaseConfig'
 
 import Navbar from './Navbar'
-import Products from './Products'
+import Products from './Catalog/Products'
 
 const Home = ({ user }) => {
     const navigate = useNavigate();

@@ -1,5 +1,5 @@
-import React from 'react';
-import Products from './Products';
+import React from 'react'
+import Products from './Products'
 
 const Catalog = () => {
     return (
@@ -12,5 +12,5 @@ const Catalog = () => {
     );
 }
 
-export default Catalog;
+export default Catalog
 
