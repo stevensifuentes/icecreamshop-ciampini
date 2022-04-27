@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { collection, doc, onSnapshot, updateDoc } from "firebase/firestore";
-import { db } from '../../../firebase/firebaseConfig';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import { toast } from "react-toastify";
+import { db } from '../../../firebase/firebaseConfig';
 import "bootstrap/dist/css/bootstrap.min.css";
-import './TableStyle.css'
+import './TableStyle.css';
 
 import {
     Table,
@@ -14,7 +14,6 @@ import {
 } from "reactstrap";
 
 const TableOrders = () => {
-
     const [datos, setDatos] = useState([]);
 
     const obtenerRegistros = async () => {
@@ -55,7 +54,7 @@ const TableOrders = () => {
                             <th>Email</th>
                             <th>Teléfono</th>
                             <th>Dirección</th>
-                            <th>Pago Total (S/)</th>
+                            <th>Pago Total</th>
                             <th>Cantidad de compra</th>
                             <th>Fecha de pedido</th>
                             <th>Acciones</th>
@@ -69,7 +68,7 @@ const TableOrders = () => {
                                 <td>{dato.BuyerEmail}</td>
                                 <td>{dato.BuyerCell}</td>
                                 <td>{dato.BuyerAddress}</td>
-                                <td>{dato.BuyerPayment}</td>
+                                <td>{`S/${dato.BuyerPayment}.00`}</td>
                                 <td>{dato.BuyerQuantity}</td>
                                 <td>{dato.TimeBuy}</td>
                                 <td>   

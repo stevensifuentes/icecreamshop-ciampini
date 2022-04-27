@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { collection, doc, onSnapshot, updateDoc } from "firebase/firestore"
-import { storage, db } from '../../../firebase/firebaseConfig'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faEdit, faTrashAlt } from '@fortawesome/free-solid-svg-icons'
-import { toast } from "react-toastify"
-import "bootstrap/dist/css/bootstrap.min.css"
-import './TableStyle.css'
+import { collection, doc, onSnapshot, updateDoc } from "firebase/firestore";
+import { storage, db } from '../../../firebase/firebaseConfig';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEdit, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
+import { toast } from "react-toastify";
+import "bootstrap/dist/css/bootstrap.min.css";
+import './TableStyle.css';
 
 import {
     Table,
@@ -170,7 +170,7 @@ const TableProducts = () => {
                         {datos.map((dato) => (
                             <tr key={dato.id}>
                                 <td>{dato.Nombre}</td>
-                                <td>{dato.Precio}</td>
+                                <td>{`S/${dato.Precio}.00`}</td>
                                 <td>{dato.Cantidad}</td>
                                 <td>
                                     <Button
@@ -191,7 +191,9 @@ const TableProducts = () => {
 
             <Modal isOpen={modalActualizar}>
                 <ModalHeader>
-                    <div><h3 className="text-center">Editar Registro</h3></div>
+                    <div>
+                        <h3 className="text-center">Editar Producto</h3>
+                    </div>
                 </ModalHeader>
 
                 <ModalBody>
@@ -253,7 +255,9 @@ const TableProducts = () => {
 
             <Modal isOpen={modalInsertar}>
                 <ModalHeader>
-                    <div><h3 className="text-center">Añadir</h3></div>
+                    <div>
+                        <h3 className="text-center">Añadir Producto</h3>
+                    </div>
                 </ModalHeader>
 
                 <ModalBody>
