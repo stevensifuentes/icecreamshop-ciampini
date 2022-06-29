@@ -3,11 +3,20 @@ import styled from 'styled-components';
 import { ReactComponent as ShoppingCart } from './shoppingcart.svg';
 import { Icon } from 'react-icons-kit';
 import { arrowRight } from 'react-icons-kit/fa/arrowRight';
+import { toast } from 'react-toastify';
 import Starts from './Starts';
 
 const Product = ({ product, dispatch }) => {
 
     const { ProductID, ProductImg, ProductName, ProductPrice } = product
+
+    const handleAddToCart = () => {
+        dispatch({ type: 'ADD_TO_CART', id: ProductID, product })
+        toast('Producto agregado', {
+            type: 'success',
+            autoClose: 2000
+        });
+    }
 
     return (
         <ProductCard>
@@ -25,7 +34,7 @@ const Product = ({ product, dispatch }) => {
             <ButtonContainer>
                 <span><ShoppingCart /></span>
                 <button
-                    onClick={() => dispatch({ type: 'ADD_TO_CART', id: ProductID, product })}>
+                    onClick={() => handleAddToCart()}>
                         Añadir a la cesta
                 </button>
             </ButtonContainer>

@@ -2,25 +2,25 @@ import React, { useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
 
 import Administrator from './admin/Administrator';
-import About from './client/Components/About/About';
-import Catalog from './client/Components/Catalog/Catalog';
-import Contact from './client/Components/Contact/Contact';
-import Error404 from './client/Components/Error404/Error404';
-import Footer from './client/Components/Footer/Footer';
-import FormLogin from './client/Components/Login/FormLogin';
-import Home from './client/Components/Home';
-import Signup from './client/Components/Register/Register';
-import Modal from './client/Components/Modal/Modal';
-import Navigation from './client/Components/Navegacion/Navigation';
+import About from './client/components/About/About';
+import Catalog from './client/components/Catalog/Catalog';
+import Contact from './client/components/Contact/Contact';
+import Error404 from './client/components/Error404/Error404';
+import Footer from './client/components/Footer/Footer';
+import FormLogin from './client/components/Login/FormLogin';
+import Home from './client/components/Home';
+import Signup from './client/components/Register/Register';
+import Modal from './client/components/Modal/Modal';
+import Navigation from './client/components/Navegacion/Navigation';
 import Profile from './admin/components/Profile/Profile'
 import PrivateRoute from './PrivateRoute';
-import Login from './client/Components/Login/Login';
+import Login from './client/components/Login/Login';
 import TableClients from './admin/components/Tables/TableClients'
 import TableProducts from './admin/components/Tables/TableProducts';
 import TableOrders from './admin/components/Tables/TableOrders';
-import { Cart } from './client/Components/ShoppingCart/Cart';
-import { Cashout } from './client/Components/Cashout';
-import { useAuth } from './context/AuthContext';
+import { Cart } from './client/components/ShoppingCart/Cart';
+import { Cashout } from './client/components/Cashout';
+import { useAuth } from './hooks/useAuth';
 
 const App = () => {
     const [openModal, setOpenModal] = useState(false)

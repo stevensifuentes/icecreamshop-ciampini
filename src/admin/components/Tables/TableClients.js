@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from 'react';
 import { faEdit, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { toast } from "react-toastify";
+import { toast } from 'react-toastify';
 import { storage, db } from '../../../firebase/firebaseConfig';
-import "bootstrap/dist/css/bootstrap.min.css";
-import './TableStyle.css'
+import 'bootstrap/dist/css/bootstrap.min.css';
+import './TableStyle.css';
 
 import { 
     collection, 
@@ -21,7 +21,8 @@ import {
     ModalBody,
     FormGroup,
     ModalFooter,
-} from "reactstrap";
+} from 'reactstrap';
+import { ref, uploadBytes, uploadBytesResumable } from 'firebase/storage';
 
 const TableClients = () => {
     const initialStateValues = {
@@ -91,12 +92,12 @@ const TableClients = () => {
             Phone: dato.telefono,
             Address: dato.direccion,
             Email: dato.correo,
-            Estado: true
+            State: true
         }
 
         try {
-            await updateDoc(doc(db, "Clients", currentId), dataActualizar)
-            toast("Cliente actualizado con éxito!", {type: "info"});
+            await updateDoc(doc(db, 'Clients', currentId), dataActualizar)
+            toast('Cliente actualizado con éxito!', { type: 'info' });
             setModalActualizar(false);
         } catch (error) {
             console.log('Hubo un error al intentar actualizar al cliente')
@@ -106,9 +107,9 @@ const TableClients = () => {
 
     const eliminar = async (dato) => {
         if (window.confirm(`¿Estás seguro que deseas eliminar a ${dato.Name} ${dato.LastName}?`)) {
-            await updateDoc(doc(db, "Clients", currentId), {Estado: false})
+            await updateDoc(doc(db, 'Clients', currentId), { State: false })
             toast(`Se eliminó al cliente ${dato.Name} con éxito.`, {
-                type: "error",
+                type: 'error',
                 autoClose: 2000
             });
         }
@@ -116,7 +117,19 @@ const TableClients = () => {
 
     /* Falta actualizar */
     const insertar = (e) => {
-        const uploadTask = storage.ref(`clients-images/${imagen.name}`).put(imagen);
+        const uploadTask = uploadBytesResumable(ref(storage, `clients-images/${imagen.name}`), imagen)
+        
+        /* uploadTask.on('state_changed', (snapshot) => {
+            const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+            console.log(progress);
+        }, 
+        (error) => setError(err.message), 
+        () => {
+            ref('clients-images').child
+        }) */
+
+
+        // const uploadTask = storage.ref(`clients-images/${imagen.name}`).put(imagen);
         uploadTask.on('state_changed', snapshot => {
             const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
             console.log(progress);
@@ -308,21 +321,21 @@ const TableClients = () => {
 
             <Modal isOpen={modalInsertar}>
                 <ModalHeader>
-                    <div><h3 className="text-center">Añadir Cliente</h3></div>
+                    <div>
+                        <h3 className="text-center">Añadir Cliente</h3>
+                    </div>
                 </ModalHeader>
 
                 <ModalBody>
                     <FormGroup>
                         <label>
-                            Id:
+                            N°:
                         </label>
-
                         <input
                             className="form-control"
                             readOnly
                             type="text"
-                            value={datos.length + 1}
-                        />
+                            value={datos.length + 1} />
                     </FormGroup>
                     <FormGroup>
                         <label>
@@ -332,8 +345,7 @@ const TableClients = () => {
                             className="form-control"
                             name="nombre"
                             type="text"
-                            onChange={handleInputChange}
-                        />
+                            onChange={handleInputChange} />
                     </FormGroup>
                     <FormGroup>
                         <label>
@@ -343,8 +355,7 @@ const TableClients = () => {
                             className="form-control"
                             name="apellido"
                             type="text"
-                            onChange={handleInputChange}
-                        />
+                            onChange={handleInputChange} />
                     </FormGroup>
                     <FormGroup>
                         <label>
@@ -354,8 +365,7 @@ const TableClients = () => {
                             className="form-control"
                             name="email"
                             type="email"
-                            onChange={handleInputChange}
-                        />
+                            onChange={handleInputChange} />
                     </FormGroup>
                     <FormGroup>
                         <label>
@@ -365,8 +375,7 @@ const TableClients = () => {
                             className="form-control"
                             name="telefono"
                             type="text"
-                            onChange={handleInputChange}
-                        />
+                            onChange={handleInputChange} />
                     </FormGroup>
                     <FormGroup>
                         <label>
@@ -376,16 +385,12 @@ const TableClients = () => {
                             className="form-control"
                             name="direccion"
                             type="address"
-                            onChange={handleInputChange}
-                        />
+                            onChange={handleInputChange} />
                     </FormGroup>
                     <FormGroup>
-                        <label
-                            htmlFor="foto"
-                        >
+                        <label htmlFor="foto">
                             Foto
                         </label>
-
                         <input
                             className="form-control"
                             name="foto"
@@ -400,14 +405,12 @@ const TableClients = () => {
                 <ModalFooter>
                     <Button
                         color="primary"
-                        onClick={() => insertar()}
-                    >
+                        onClick={() => insertar()}>
                         Insertar
                     </Button>
                     <Button
                         className="btn btn-danger"
-                        onClick={() => cerrarModalInsertar()}
-                    >
+                        onClick={() => cerrarModalInsertar()}>
                         Cancelar
                     </Button>
                 </ModalFooter>

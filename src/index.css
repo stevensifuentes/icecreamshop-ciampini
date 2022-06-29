@@ -194,8 +194,7 @@ h1 {
 }
 
 .cart-container .cart-card .cart-img {
-    width: 150px;
-    height: 120px;
+    width: 12%;
 }
 
 @media(max-width: 768px) {
@@ -213,7 +212,6 @@ h1 {
 .cart-container .cart-card .cart-name,
 .cart-container .cart-card .cart-price {
     width: 150px;
-    margin-left: 20px;
 }
 
 @media(max-width: 768px) {
@@ -230,7 +228,7 @@ h1 {
 .cart-container .cart-card .cart-price-orignal {
     width: 150px;
     margin-left: 20px;
-    color: #f57224;
+    color: #1b7177;
 }
 
 @media(max-width: 768px) {
@@ -270,20 +268,45 @@ h1 {
 /* cart summary */
 .cart-summary {
     display: flex;
+    font-size: 1.2em;
     flex-direction: column;
     padding: 50px;
-    border: 1px solid #e4e4e4;
-    width: 300px;
+    /* width: 300px; */
+    width: 100%;
 }
 
 .cart-summary .cart-summary-heading {
-    border-bottom: 1px solid #f57224;
+    border-bottom: 1px solid #6AAE9F;
+    font-size: 1.5em;
+    font-weight: bold;
 }
 
 .cart-summary .cart-summary-price {
     display: flex;
     justify-content: space-between;
     margin-top: 10px;
+}
+
+.custom_btn {
+    color: #fff;
+    outline: none;
+    width: 100%;
+    padding: 8px 15px;
+    background: #6AAE9F;
+    border-radius: 3px;
+    border: none;
+    box-shadow: 1px 1px 10px rgba(158, 150, 150, 0.6);
+    transition: .2s all ease-in;
+}
+
+.cesta__full{
+    display: grid;
+    grid-template-columns: 1fr 600px;
+    gap: 10px;
+}
+
+.custom_btn:hover {
+    background: #6aae9fa7;
 }
 
 .cashout-link {

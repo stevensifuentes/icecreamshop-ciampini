@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { doc, getDoc } from 'firebase/firestore';
 import { Outlet } from 'react-router-dom';
 import { db } from '../firebase/firebaseConfig';
-import { useAuth } from '../context/AuthContext';
+import { useAuth } from '../hooks/useAuth';
 import Navbar from './components/NavbarAdmin/Navbar'
 import Sidebar from './components/Sidebar/Sidebar';
 import './Administrator.css';

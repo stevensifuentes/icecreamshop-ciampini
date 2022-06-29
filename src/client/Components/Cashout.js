@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom'
 import { toast } from "react-toastify";
 import { CartContext } from '../../context/CartContext'
 import Navbar from '../../admin/components/NavbarAdmin/Navbar';
-import { useAuth } from '../../context/AuthContext';
+import { useAuth } from '../../hooks/useAuth';
 
 export const Cashout = () => {
     const { user } = useAuth()
